@@ -21,6 +21,7 @@ public class CustomerApplication {
     private static void pochinitDetali() {
         List<String> names = new ArrayList<String>();
         List<String> namesNo = new ArrayList<String>();
+        List<String> namesYes = new ArrayList<String>();
         names.add("koleco");
         names.add("koleco");
         names.add("kolecdasasdo");
@@ -32,6 +33,10 @@ public class CustomerApplication {
             if(query.getForEntity("http://localhost:9001/chinim/" + names.get(i), boolean.class).getBody()) {
                 try {
                     price += query.getForEntity("http://localhost:9000/" + names.get(i), int.class).getBody();
+                    Pochinka pochinka = query.getForEntity("http://localhost:9001/" + names.get(i), Pochinka.class).getBody();
+                    price += pochinka.cost;
+                    time += pochinka.time;
+                    namesYes.add(names.get(i));
                 } catch (HttpServerErrorException e) {
                     namesNo.add(names.get(i));
                 }
@@ -41,7 +46,10 @@ public class CustomerApplication {
         for(int i = 0; i < namesNo.size(); i++)
             System.out.println("No " + namesNo.get(i) + "!");
         System.out.println("BILL");
-        System.out.println(price);
+        for(int i = 0; i < namesYes.size(); i++)
+            System.out.println("1x " + namesYes.get(i));
+        System.out.println("TOTAL: " + price);
+        System.out.println("prihodite cherez " + time + " secund");
     }
     private static void buyTovari() {
         List<String> names = new ArrayList<String>();
