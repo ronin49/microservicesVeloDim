@@ -15,6 +15,7 @@ import java.util.List;
 public class CustomerApplication {
 
     public static void main(String[] args) {
+        addTovari();
         pochinitDetali();
     }
     private static void pochinitDetali() {
