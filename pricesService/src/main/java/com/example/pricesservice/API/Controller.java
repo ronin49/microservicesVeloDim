@@ -1,27 +1,26 @@
-package com.example.pricesservice;
+package com.example.pricesservice.API;
 
+import com.example.pricesservice.Repo.Model.Price;
+import com.example.pricesservice.API.dto.Prices;
+import com.example.pricesservice.Services.Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RequiredArgsConstructor
 @RestController
 public class Controller {
-    final Repo repo;
+    final Service service;
     @GetMapping
     public ResponseEntity<Prices> index() {
-        Prices prices = new Prices();
-        prices.setPrices(repo.findAll());
-        return ResponseEntity.ok(prices);
+        return ResponseEntity.ok(service.getPrices());
     }
     @PostMapping
     public void add(@RequestBody Price price) {
-        repo.save(price);
+        service.addPrice(price);
     }
     @GetMapping("{name}")
     public int priceOf(@PathVariable String name) {
-        return repo.findById(name).get().price;
+        return service.getPrice(name);
     }
 }

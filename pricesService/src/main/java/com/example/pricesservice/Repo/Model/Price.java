@@ -1,4 +1,4 @@
-package com.example.pricesservice;
+package com.example.pricesservice.Repo.Model;
 
 import lombok.Data;
 
