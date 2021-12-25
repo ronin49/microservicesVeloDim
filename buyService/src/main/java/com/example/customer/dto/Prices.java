@@ -1,8 +1,7 @@
-package com.example.customer;
+package com.example.customer.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 @NoArgsConstructor

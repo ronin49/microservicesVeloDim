@@ -17,7 +17,7 @@ public class Service {
     public void addPrice(Price price) {
         repo.save(price);
     }
-    public int getPrice(String name) {
-        return repo.findById(name).get().getPrice();
+    public Price getPrice(String name) {
+        return repo.findById(name).get();
     }
 }
